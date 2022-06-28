@@ -1,0 +1,287 @@
+/* Mouse helper
+--------------------------------------------------------------- */
+.trx_effects_mouse_helper {
+
+	--mouse-helper-width: 15px;
+	--mouse-helper-height: 15px;
+	--mouse-helper-left: 5px;
+	--mouse-helper-top: 25px;
+
+	position: fixed;
+	z-index: 999999;
+	top: var(--mouse-helper-top);
+	left: var(--mouse-helper-left);
+	width: var(--mouse-helper-width);
+	height: var(--mouse-helper-height);
+	border-radius: 50%;
+	box-sizing: border-box;
+	transition: left 0.3s ease, top 0.3s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	font-size: 0.75em;
+	text-indent: 200px;
+	line-height: 1.25em;
+	text-align: center;
+/*
+	background-color: #11a0d2;
+*/
+	color: #fff;
+	border: 1px solid transparent;
+	opacity: 0;
+	pointer-events: none;
+}
+.trx_effects_mouse_helper_permanent {
+	opacity: 0.5;
+}
+.trx_effects_mouse_helper_centered {
+	left: calc( var(--mouse-helper-width) / -2 );
+	top: calc( var(--mouse-helper-height) / -2 );
+}
+.trx_effects_mouse_helper_left:not(.trx_effects_mouse_helper_centered) {
+	left: calc( var(--mouse-helper-width) * -1 - 15px );
+}
+.trx_effects_mouse_helper_top:not(.trx_effects_mouse_helper_centered) {
+	top: calc( var(--mouse-helper-height) * -1 - 15px );
+}
+.trx_effects_mouse_helper_icon {
+	font-size: 3em;
+}
+.trx_effects_mouse_helper_with_text .trx_effects_mouse_helper_icon {
+	margin-bottom: 0.25em;
+	font-size: 1.5em;
+}
+.trx_effects_mouse_helper_with_text_round .trx_effects_mouse_helper_icon {
+	margin-bottom: 0;
+}
+.trx_effects_mouse_helper_text_round {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+body:not(.rtl) .trx_effects_mouse_helper_text_round {
+	animation: trx-effects-mouse-helper-spin-ccw 8s infinite linear;
+}
+body.rtl .trx_effects_mouse_helper_text_round {
+	animation: trx-effects-mouse-helper-spin 8s infinite linear;
+}
+
+.trx_effects_mouse_helper_text_round_item {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	transform-origin: left top;
+	line-height: 1.25em;
+}
+body.rtl .trx_effects_mouse_helper_text_round_item {
+	left:  auto;
+	right:  0;
+	transform-origin: right top;
+}
+
+.trx_effects_mouse_helper_image {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-size: cover;
+}
+.trx_effects_mouse_helper_active {
+	--mouse-helper-width: 25px;
+	--mouse-helper-height: 25px;
+	color: #fff;
+	opacity: 1;
+	text-indent: 0;
+}
+.trx_effects_mouse_helper_active.trx_effects_mouse_helper_action_highlight {
+	display: none;
+}
+.trx_effects_mouse_helper_active.trx_effects_mouse_helper_with_icon {
+	--mouse-helper-width: 50px;
+	--mouse-helper-height: 50px;
+	padding: 5px;
+}
+.trx_effects_mouse_helper_active.trx_effects_mouse_helper_with_text {
+	--mouse-helper-width: 75px;
+	--mouse-helper-height: 75px;
+	padding: 5px;
+}
+.trx_effects_mouse_helper_active.trx_effects_mouse_helper_with_image {
+	--mouse-helper-width: 128px;
+	--mouse-helper-height: 128px;
+	border-radius: 0;
+}
+.trx_effects_mouse_helper_active.trx_effects_mouse_helper_with_image.trx_effects_mouse_helper_with_text {
+	--mouse-helper-width: 160px;
+	--mouse-helper-height:160px;
+}
+.trx_effects_mouse_helper_active.trx_effects_mouse_helper_with_image.trx_effects_mouse_helper_with_text .trx_effects_mouse_helper_image:before {
+	content: ' ';
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+/* Hightlight for Title and Heading */
+[data-trx-effects-mouse-helper="highlight"] {
+	color: rgba(255, 255, 255, 0.25);
+	transition: color 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+	-webkit-background-clip: text;
+	background-image: radial-gradient(closest-side, #fff 78%, transparent 0);
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: 0 0;
+}
+[data-trx-effects-mouse-helper="highlight"].trx_effects_mouse_helper_over {
+	background-size: 5em 5em;
+}
+[data-trx-effects-mouse-helper="highlight"].sc_item_title_style_shadow {
+	position: relative;
+	z-index: 1;
+}
+[data-trx-effects-mouse-helper="highlight"].sc_item_title_style_gradient .sc_item_title_text {
+	opacity: 0.75;
+}
+
+/* Mouse helper in the Elementor editor */
+.elementor-editor-active .trx_effects_mouse_helper {
+	display: none !important;
+}
+
+/* Hide system cursor */
+.trx_effects_mouse_helper_hide_cursor,
+.trx_effects_mouse_helper_hide_cursor *,
+[data-trx-effects-mouse-helper-hide-cursor="1"],
+[data-trx-effects-mouse-helper-hide-cursor="1"] * {
+	cursor: none !important;
+}
+
+
+/* Responsive */
+@media (max-width: 1279px) {
+	.trx_effects_mouse_helper {
+		display: none;
+	}
+
+	/* Restore system cursor */
+	.trx_effects_mouse_helper_hide_cursor,
+	.trx_effects_mouse_helper_hide_cursor *,
+	[data-trx-effects-mouse-helper-hide-cursor="1"],
+	[data-trx-effects-mouse-helper-hide-cursor="1"] * {
+		cursor: unset !important;
+	}
+
+	[data-trx-effects-mouse-helper="highlight"] {
+		background-size: 130vw 130vh !important;
+		background-position: center !important;
+		border-radius: 0;
+	}
+}
+
+
+
+
+/* -------------- Spin ---------------- */
+.trx-effects-mouse-helper-animate-spin {
+	-webkit-animation: trx-effects-mouse-helper-spin 2s infinite linear;
+	animation: trx-effects-mouse-helper-spin 2s infinite linear;
+}
+@-webkit-keyframes trx-effects-mouse-helper-spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+@-o-keyframes trx-effects-mouse-helper-spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+@-ms-keyframes trx-effects-mouse-helper-spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+@keyframes trx-effects-mouse-helper-spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+
+
+/* -------------- Spin CCW ---------------- */
+.trx-effects-mouse-helper-animate-spin-ccw {
+	-webkit-animation: trx-effects-mouse-helper-spin-ccw 2s infinite linear;
+	animation: trx-effects-mouse-helper-spin-ccw 2s infinite linear;
+}
+@-webkit-keyframes trx-effects-mouse-helper-spin-ccw {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(-359deg);
+		transform: rotate(-359deg);
+	}
+}
+@-o-keyframes trx-effects-mouse-helper-spin-ccw {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(-359deg);
+		transform: rotate(-359deg);
+	}
+}
+@-ms-keyframes trx-effects-mouse-helper-spin-ccw {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(-359deg);
+		transform: rotate(-359deg);
+	}
+}
+@keyframes trx-effects-mouse-helper-spin-ccw {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(-359deg);
+		transform: rotate(-359deg);
+	}
+}
